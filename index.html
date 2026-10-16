@@ -3,32 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>Bảng Gõ Chữ Trợ Năng</title>
+  <title>Bảng Gõ Tiếng Việt Trợ Năng</title>
+  
+  <!-- FONT CHỮ HIỆN ĐẠI CHUYÊN DỤNG CHO TIẾNG VIỆT -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  
   <link rel="stylesheet" href="style.css">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="theme-color" content="#1e293b">
+  <meta name="theme-color" content="#f8fafc">
 </head>
 <body>
-  <!-- TOAST THÔNG BÁO NHẸ NHÀNG -->
+  <!-- TOAST THÔNG BÁO -->
   <div id="toastContainer" class="toast-container" aria-live="polite"></div>
 
   <div class="app-shell">
 
-    <!-- 1. HEADER NHỎ GỌN TRÀN VIỀN -->
+    <!-- 1. HEADER TINH TẾ -->
     <header class="app-header">
       <div class="header-brand">
-        <span class="heart-dot"></span>
-        <span class="brand-name">Gõ Chữ Trợ Năng</span>
-        <span class="live-clock" id="liveClock"></span>
+        <span class="brand-badge">BÀ GÕ CHỮ</span>
+        <span class="live-clock" id="liveClock">--:--</span>
       </div>
       <div class="header-controls">
-        <button id="btnThemeToggle" class="ctrl-btn" title="Đổi giao diện sáng/tối" aria-label="Đổi sáng tối">🌓</button>
+        <button id="btnThemeToggle" class="ctrl-btn" title="Đổi giao diện sáng / tối" aria-label="Đổi sáng tối">🌓</button>
         <button id="btnFullscreen" class="ctrl-btn" title="Toàn màn hình" aria-label="Toàn màn hình">⛶</button>
       </div>
     </header>
 
-    <!-- 2. THANH HIỂN THỊ CHỮ: 1 DÒNG DUY NHẤT, CHỮ SIÊU TO -->
+    <!-- 2. KHUNG HIỂN THỊ CHỮ (ĐÚNG 1 DÒNG DUY NHẤT, CHỮ SIÊU TO) -->
     <section class="screen-container">
       <div class="screen-inner" id="screenBox">
         <div id="textDisplay" class="text-display" role="textbox" aria-label="Chữ đang gõ">
@@ -37,67 +42,96 @@
         <div class="cursor-line" id="cursorLine"></div>
       </div>
 
-      <!-- HÀNG NÚT THAO TÁC NGAY DƯỚI DÒNG CHỮ -->
+      <!-- HÀNG NÚT THAO TÁC -->
       <div class="top-action-bar">
-        <button id="btnSpeak" class="act-btn btn-speak" title="Đọc to câu này">
-          <span class="act-icon">🔊</span>
+        <button id="btnSpeak" class="act-btn btn-speak" title="Đọc to câu này ra loa">
+          <svg class="act-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+          </svg>
           <span class="act-text">ĐỌC TO</span>
           <div class="wave-anim" id="waveAnim">
             <span></span><span></span><span></span><span></span>
           </div>
         </button>
         <button id="btnBackspace" class="act-btn btn-backspace" title="Xóa 1 chữ (ấn giữ xóa nhanh)">
-          <span class="act-icon">⌫</span>
-          <span class="act-text">XÓA</span>
+          <svg class="act-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 4H8l-7 8 7 8h13a2 2 0 0 0 2-2V6a2 2 0 0 0 2-2z"></path>
+            <line x1="18" y1="9" x2="12" y2="15"></line>
+            <line x1="12" y1="9" x2="18" y2="15"></line>
+          </svg>
+          <span class="act-text">XÓA 1 CHỮ</span>
         </button>
         <button id="btnClear" class="act-btn btn-clear" title="Xóa hết câu">
-          <span class="act-icon">✕</span>
-          <span class="act-text">HẾT</span>
+          <svg class="act-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+          <span class="act-text">XÓA HẾT</span>
         </button>
       </div>
     </section>
 
-    <!-- 3. THANH TAB CHỌN CHẾ ĐỘ -->
+    <!-- 3. THANH TAB ĐIỀU HƯỚNG KIỂU SEGMENTED CONTROL -->
     <nav class="nav-tabs">
       <button id="tabKeyboard" class="nav-tab active" data-tab="keyboard">
-        <span>⌨️ Bàn Phím Chữ</span>
+        <span>Bàn Phím Chữ</span>
       </button>
       <button id="tabQuickPhrases" class="nav-tab" data-tab="phrases">
-        <span>💬 Câu Nói Nhanh</span>
+        <span>Câu Nói Nhanh</span>
       </button>
       <button id="tabHistory" class="nav-tab" data-tab="history">
-        <span>📜 Lịch Sử</span>
+        <span>Lịch Sử</span>
       </button>
     </nav>
 
-    <!-- 4. VÙNG NỘI DUNG CHÍNH (VỪA KHÍT MÀN HÌNH KHÔNG CUỘN DỌC KHI GÕ) -->
+    <!-- 4. NỘI DUNG CHÍNH (VỪA KHÍT 100% CHIỀU CAO) -->
     <main class="content-viewport">
 
-      <!-- VIEW 1: BÀN PHÍM ẢO TỐI ƯU CẢM ỨNG CHO ĐIỆN THOẠI & TABLET -->
+      <!-- VIEW 1: BÀN PHÍM ẢO TỐI ƯU CẢM ỨNG DI ĐỘNG -->
       <div id="keyboardView" class="panel-view active">
 
-        <!-- HÀNG 1: 5 DẤU THANH TIẾNG VIỆT + BỎ DẤU -->
+        <!-- HÀNG 1: DẤU THANH (CHỈ HIỂN THỊ KÝ HIỆU DẤU, KHÔNG VIẾT CHỮ) -->
         <div class="k-row row-tones">
-          <button class="k-key key-tone" data-tone="sac"><span class="k-char">Sắc</span><span class="k-sub">´</span></button>
-          <button class="k-key key-tone" data-tone="huyen"><span class="k-char">Huyền</span><span class="k-sub">`</span></button>
-          <button class="k-key key-tone" data-tone="hoi"><span class="k-char">Hỏi</span><span class="k-sub">?</span></button>
-          <button class="k-key key-tone" data-tone="nga"><span class="k-char">Ngã</span><span class="k-sub">~</span></button>
-          <button class="k-key key-tone" data-tone="nang"><span class="k-char">Nặng</span><span class="k-sub">.</span></button>
-          <button class="k-key key-tone key-clear-tone" data-action="removeTone"><span class="k-char">Bỏ dấu</span></button>
+          <!-- Dấu Sắc (´) -->
+          <button class="k-key key-tone" data-tone="sac" title="Dấu sắc">
+            <svg viewBox="0 0 32 32" class="tone-svg"><path d="M11 23L21 9"/></svg>
+          </button>
+          <!-- Dấu Huyền (ˋ) -->
+          <button class="k-key key-tone" data-tone="huyen" title="Dấu huyền">
+            <svg viewBox="0 0 32 32" class="tone-svg"><path d="M21 23L11 9"/></svg>
+          </button>
+          <!-- Dấu Hỏi (̉) -->
+          <button class="k-key key-tone" data-tone="hoi" title="Dấu hỏi">
+            <svg viewBox="0 0 32 32" class="tone-svg"><path d="M11 13a5 5 0 0 1 9.5-2c0 3.5-5 4.5-5 8"/></svg>
+          </button>
+          <!-- Dấu Ngã (~) -->
+          <button class="k-key key-tone" data-tone="nga" title="Dấu ngã">
+            <svg viewBox="0 0 32 32" class="tone-svg"><path d="M7 17c3.5-6 6-6 9 0s5.5 6 9 0"/></svg>
+          </button>
+          <!-- Dấu Nặng (•) -->
+          <button class="k-key key-tone" data-tone="nang" title="Dấu nặng">
+            <svg viewBox="0 0 32 32" class="tone-svg-dot"><circle cx="16" cy="18" r="4.8"/></svg>
+          </button>
+          <!-- Nút Bỏ Dấu (✕) -->
+          <button class="k-key key-tone key-clear-tone" data-action="removeTone" title="Bỏ dấu">
+            <svg viewBox="0 0 32 32" class="tone-svg-cross"><path d="M10 10l12 12M22 10L10 22"/></svg>
+          </button>
         </div>
 
-        <!-- HÀNG 2: NGUYÊN ÂM TIẾNG VIỆT CÓ MŨ/MÓC ĐẶC TRƯNG + Đ -->
-        <div class="k-row row-viet-special">
-          <button class="k-key key-vowel-spec" data-char="Ă">Ă</button>
-          <button class="k-key key-vowel-spec" data-char="Â">Â</button>
-          <button class="k-key key-vowel-spec" data-char="Ê">Ê</button>
-          <button class="k-key key-vowel-spec" data-char="Ô">Ô</button>
-          <button class="k-key key-vowel-spec" data-char="Ơ">Ơ</button>
-          <button class="k-key key-vowel-spec" data-char="Ư">Ư</button>
+        <!-- HÀNG 2: NGUYÊN ÂM CÓ DẤU MŨ / MÓC + Đ -->
+        <div class="k-row">
+          <button class="k-key key-vowel" data-char="Ă">Ă</button>
+          <button class="k-key key-vowel" data-char="Â">Â</button>
+          <button class="k-key key-vowel" data-char="Ê">Ê</button>
+          <button class="k-key key-vowel" data-char="Ô">Ô</button>
+          <button class="k-key key-vowel" data-char="Ơ">Ơ</button>
+          <button class="k-key key-vowel" data-char="Ư">Ư</button>
           <button class="k-key key-spec-d" data-char="Đ">Đ</button>
         </div>
 
-        <!-- HÀNG 3: NGUYÊN ÂM CƠ BẢN + CÁC PHỤ ÂM ĐẦU -->
+        <!-- HÀNG 3: NGUYÊN ÂM CƠ BẢN + PHỤ ÂM ĐẦU -->
         <div class="k-row">
           <button class="k-key key-vowel" data-char="A">A</button>
           <button class="k-key key-vowel" data-char="E">E</button>
@@ -121,7 +155,7 @@
           <button class="k-key" data-char="P">P</button>
         </div>
 
-        <!-- HÀNG 5: CÁC PHỤ ÂM CÒN LẠI -->
+        <!-- HÀNG 5: CÁC PHỤ ÂM CUỐI + DẤU PHẨY, DẤU CHẤM -->
         <div class="k-row">
           <button class="k-key" data-char="Q">Q</button>
           <button class="k-key" data-char="R">R</button>
@@ -133,17 +167,17 @@
           <button class="k-key key-punct" data-char=".">.</button>
         </div>
 
-        <!-- HÀNG 6: SỐ NHANH + PHÍM CÁCH SIÊU TO + DẤU HỎI/CHẤM THAN -->
+        <!-- HÀNG 6: NÚT SỐ + PHÍM CÁCH RỘNG RÃI + DẤU CÂU -->
         <div class="k-row row-bottom">
-          <button class="k-key key-toggle-num" id="btnToggleNum" title="Mở bảng số">123</button>
+          <button class="k-key key-toggle-num" id="btnToggleNum" title="Bật/Tắt hàng số">123</button>
           <button class="k-key key-space" data-action="space">
-            ␣ DẤU CÁCH
+            KHOẢNG CÁCH
           </button>
           <button class="k-key key-punct" data-char="?">?</button>
           <button class="k-key key-punct" data-char="!">!</button>
         </div>
 
-        <!-- HÀNG SỐ ẨN / HIỆN (POPUP TIỆN LỢI) -->
+        <!-- HÀNG CHỮ SỐ BẬT/TẮT -->
         <div class="k-row row-numbers" id="rowNumbers">
           <button class="k-key key-num" data-char="1">1</button>
           <button class="k-key key-num" data-char="2">2</button>
@@ -159,11 +193,11 @@
 
       </div>
 
-      <!-- VIEW 2: CÁC CÂU NÓI NHANH 1 CHẠM -->
+      <!-- VIEW 2: CÂU NÓI NHANH 1 CHẠM -->
       <div id="quickPhrasesView" class="panel-view">
         <div class="phrases-scroll-area">
 
-          <!-- Nhu cầu khẩn cấp -->
+          <!-- Nhu cầu cần thiết -->
           <div class="cat-block">
             <div class="cat-title">🚨 Nhu Cầu Cần Thiết</div>
             <div class="cat-grid">
@@ -217,7 +251,7 @@
             </div>
           </div>
 
-          <!-- Cảm giác cơ thể -->
+          <!-- Cảm giác thời tiết -->
           <div class="cat-block">
             <div class="cat-title">🌡️ Cảm Giác Cơ Thể</div>
             <div class="cat-grid">
@@ -255,7 +289,7 @@
         </div>
       </div>
 
-      <!-- VIEW 3: LỊCH SỬ CÂU GẦN NHẤT -->
+      <!-- VIEW 3: LỊCH SỬ CÂU ĐÃ GÕ -->
       <div id="historyView" class="panel-view">
         <div class="history-container">
           <div class="history-top">
@@ -269,9 +303,6 @@
     </main>
 
   </div>
-
-  <!-- PHÁO HOA GIAO DIỆN -->
-  <canvas id="confettiCanvas" class="confetti-layer"></canvas>
 
   <script src="app.js"></script>
 </body>
