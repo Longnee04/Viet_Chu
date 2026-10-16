@@ -821,8 +821,196 @@ body.dark-mode .p-card {
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* ============================================================
+   TỐI ƯU ĐẶC BIỆT KHI XOAY NGANG ĐIỆN THOẠI (LANDSCAPE MODE)
+   Khắc phục 100% tình trạng đè chữ, chữ tràn ra ngoài nút bấm
+   ============================================================ */
+@media (orientation: landscape) and (max-height: 550px) {
+  .app-shell {
+    padding: calc(var(--safe-top) + 2px) 10px calc(var(--safe-bottom) + 3px) 10px;
+  }
+
+  /* 1. Header siêu mỏng gọn */
+  .app-header {
+    height: 24px;
+    margin-bottom: 2px;
+  }
+
+  .brand-badge {
+    font-size: 11px;
+    padding: 1px 6px;
+  }
+
+  .live-clock {
+    font-size: 11px;
+  }
+
+  .ctrl-btn {
+    width: 24px;
+    height: 24px;
+    font-size: 13px;
+  }
+
+  /* 2. Gộp ô gõ chữ và 3 nút thao tác trên CÙNG MỘT HÀNG NGANG để tiết kiệm chiều dọc */
+  .screen-container {
+    flex-direction: row;
+    align-items: stretch;
+    gap: 6px;
+    margin-bottom: 3px;
+  }
+
+  .screen-inner {
+    flex: 1;
+    min-height: 42px;
+    max-height: 46px;
+    padding: 2px 10px;
+    border-radius: 10px;
+  }
+
+  .text-display {
+    font-size: clamp(22px, 5.8vh, 32px);
+    line-height: 1.1;
+  }
+
+  .placeholder {
+    font-size: 14px;
+  }
+
+  .cursor-line {
+    height: 24px;
+  }
+
+  .top-action-bar {
+    flex: 0 0 auto;
+    height: 44px;
+    gap: 4px;
+  }
+
+  .act-btn {
+    height: 100%;
+    padding: 0 10px;
+    border-radius: 10px;
+    gap: 4px;
+  }
+
+  .act-svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  .act-text {
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .btn-speak {
+    flex: 0 0 auto;
+    padding: 0 12px;
+  }
+
+  .btn-backspace {
+    flex: 0 0 auto;
+    padding: 0 10px;
+  }
+
+  .btn-clear {
+    flex: 0 0 auto;
+    padding: 0 8px;
+  }
+
+  /* 3. Thanh Tab thu nhỏ gọn */
+  .nav-tabs {
+    height: 26px;
+    padding: 2px;
+    margin-bottom: 3px;
+    border-radius: 8px;
+  }
+
+  .nav-tab {
+    font-size: 11px;
+    border-radius: 6px;
+  }
+
+  /* 4. Bàn phím: Tối ưu font theo chiều cao vh, KHÔNG BAO GIỜ bị đè chữ */
+  #keyboardView {
+    gap: 3px;
+  }
+
+  .k-row {
+    gap: 4px;
+  }
+
+  .k-key {
+    border-radius: 7px;
+    font-size: clamp(14px, 4.4vh, 20px) !important;
+    font-weight: 700;
+  }
+
+  /* Ký hiệu dấu thanh khi xoay ngang */
+  .tone-svg {
+    width: 20px;
+    height: 20px;
+    stroke-width: 3.2;
+  }
+
+  .tone-svg-dot {
+    width: 20px;
+    height: 20px;
+  }
+
+  .tone-svg-cross {
+    width: 17px;
+    height: 17px;
+    stroke-width: 3;
+  }
+
+  /* Phím cách và nút số */
+  .row-bottom .key-space {
+    font-size: 12px !important;
+    letter-spacing: 0.3px;
+  }
+
+  .key-toggle-num {
+    font-size: 12px !important;
+  }
+
+  .key-num {
+    font-size: 14px !important;
+  }
+
+  /* 5. Câu nói nhanh chia cột thoáng đãng khi xoay ngang */
+  .phrases-scroll-area {
+    gap: 8px;
+    padding-bottom: 10px;
+  }
+
+  .cat-title {
+    font-size: 11px;
+  }
+
+  .cat-grid {
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 6px;
+  }
+
+  .p-card {
+    min-height: 42px;
+    padding: 4px 8px;
+    border-radius: 9px;
+    gap: 6px;
+  }
+
+  .p-badge {
+    font-size: 17px;
+  }
+
+  .p-label {
+    font-size: 13px;
+  }
+}
+
 /* TABLET TỐI ƯU */
-@media (min-width: 768px) {
+@media (min-width: 768px) and (min-height: 551px) {
   .app-shell {
     max-width: 860px;
     margin: 0 auto;
@@ -862,3 +1050,4 @@ body.dark-mode .p-card {
     stroke-width: 3.6;
   }
 }
+
